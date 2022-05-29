@@ -23,6 +23,6 @@
     .footer {
         margin: 0 19px;
         width: calc(100% - 19px*2);
-        pad: 48px 0 36px;
+        padding: 48px 0 36px;
     }
 }
