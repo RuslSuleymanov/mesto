@@ -5,12 +5,6 @@
 }
 
 @font-face {
-    src: url('../fonts/Inter-Bold.ttf');
-    font-family: 'Inter';
-    font-weight: 700;
-}
-
-@font-face {
     src: url('../fonts/Inter-Regular.ttf');
     font-family: 'Inter';
     font-weight: 400;

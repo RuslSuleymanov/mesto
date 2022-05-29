@@ -6,14 +6,13 @@ let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileName = document.querySelector('.popup__name');
 let profileProfession = document.querySelector('.popup__profession');
-// let buttonLike = document.querySelectorAll('.elements__like-button');
 
 function popupVisible() {
-    popup.classList.remove('popup__hidden');
+    popup.classList.remove('popup_hidden');
 };
 
 function popupHidden() {
-    popup.classList.add('popup__hidden');
+    popup.classList.add('popup_hidden');
 };
 
 buttonProfileEdit.addEventListener('click', popupVisible); // открыть попап
@@ -22,7 +21,7 @@ buttonProfileEditClose.addEventListener('click', popupHidden); // закрыть
 
 popup.addEventListener('click', function (a) {
     if (a.target === a.currentTarget) {
-        popup.classList.add('popup__hidden');
+        popup.classList.add('popup_hidden');
     }
 }); // закрыть попап нажатием на страницу
 
@@ -34,6 +33,7 @@ function formSubmitProfile(evt) {
 
 buttonProfileEditSave.addEventListener('click', formSubmitProfile); // сохроняем изменения профиля
 
+// let buttonLike = document.querySelectorAll('.elements__like-button');
 // buttonLike[i].addEventListener('click', function () {
 //    i = ???
 //    buttonLike[i].classList.add('elements__like-button_active');
