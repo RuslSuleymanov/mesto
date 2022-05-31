@@ -1,5 +1,5 @@
 .profile__edit-button {
-    background-color: #000;
+    background: url('../../../images/pan.svg') center center no-repeat;
     width: 24px;
     height: 24px;
     display: flex;

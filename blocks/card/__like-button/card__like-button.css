@@ -1,4 +1,4 @@
-.elements__like-button {
+.card__like-button {
     background-image: url(../../../images/like.svg);
     border: none;
     background-color: #fff;
@@ -9,6 +9,6 @@
     margin: 0 20px 0 0;
 }
 
-.elements__like-button:hover {
+.card__like-button:hover {
     opacity: 0.6;
 }
