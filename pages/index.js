@@ -5,8 +5,10 @@ let buttonProfileEditSave = document.querySelector('.popup__button-save');
 let profileForm = document.querySelector('popup__form');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
-let profileName = document.querySelector('.popup__name');
-let profileProfession = document.querySelector('.popup__profession');
+let profileName = document.querySelector('.popup__field_input_name');
+let profileProfession = document.querySelector('.popup__field_input_profession');
+
+popupHidden();
 
 function popupVisible() {
     profileName.value = profileTitle.textContent;
@@ -22,12 +24,6 @@ buttonProfileEdit.addEventListener('click', popupVisible); // открыть п�
 
 buttonProfileEditClose.addEventListener('click', popupHidden); // закрыть попап нажатием на крест
 
-// popup.addEventListener('click', function (a) {
-//     if (a.target === a.currentTarget) {
-//         popup.classList.add('popup_open');
-//     }
-// }); // закрыть попап нажатием на страницу
-
 function formSubmitProfile(evt) {
     evt.preventDefault();
     profileTitle.textContent = profileName.value;
@@ -37,6 +33,12 @@ function formSubmitProfile(evt) {
 
 buttonProfileEditSave.addEventListener('click', formSubmitProfile); // сохроняем изменения профиля
 profileForm.addEventListener('submit', formSubmitProfile); //отправка формы
+
+// popup.addEventListener('click', function (a) {
+//     if (a.target === a.currentTarget) {
+//         popup.classList.add('popup_open');
+//     }
+// }); // закрыть попап нажатием на страницу
 
 // let buttonLike = document.querySelectorAll('.card__like-button');
 // buttonLike[i].addEventListener('click', function () {

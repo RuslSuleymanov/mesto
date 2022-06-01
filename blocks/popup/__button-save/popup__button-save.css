@@ -22,3 +22,7 @@
         line-height: 17px;
     }
 }
+
+.popup__button-save:hover {
+    opacity: 0.8;
+}

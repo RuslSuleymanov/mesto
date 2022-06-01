@@ -17,7 +17,5 @@
     content: '';
     width: 100%;
     height: 100%;
-    background: #000;
-    opacity: .5;
-    transition: .8s;
+    background: rgba(0, 0, 0, .5);
 }
