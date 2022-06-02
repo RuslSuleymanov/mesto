@@ -5,8 +5,8 @@ let buttonProfileEditSave = document.querySelector('.popup__button-save');
 let profileForm = document.querySelector('popup__form');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
-let profileName = document.querySelector('.popup__field_input_name');
-let profileProfession = document.querySelector('.popup__field_input_profession');
+let profileName = document.querySelector('.popup__input_type_name');
+let profileProfession = document.querySelector('.popup__input_type_profession');
 
 popupHidden();
 
