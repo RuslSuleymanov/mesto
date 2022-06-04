@@ -2,41 +2,40 @@ let popup = document.querySelector('.popup');
 let buttonProfileEdit = document.querySelector('.profile__edit-button');
 let buttonProfileEditClose = document.querySelector('.popup__button-close');
 let buttonProfileEditSave = document.querySelector('.popup__button-save');
-let profileForm = document.querySelector('popup__form');
+let profileForm = document.forms.popupForm;
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileName = document.querySelector('.popup__input_type_name');
 let profileProfession = document.querySelector('.popup__input_type_profession');
 
-popupHidden();
-
-function popupVisible() {
+function popupOpen() {
     profileName.value = profileTitle.textContent;
     profileProfession.value = profileSubtitle.textContent;
-    popup.classList.remove('popup_open');
+    popup.classList.add('popup_opened');
 };
 
-function popupHidden() {
-    popup.classList.add('popup_open');
+function popupClose() {
+    popup.classList.remove('popup_opened');
 };
 
-buttonProfileEdit.addEventListener('click', popupVisible); // открыть попап
+buttonProfileEdit.addEventListener('click', popupOpen); // открыть попап
 
-buttonProfileEditClose.addEventListener('click', popupHidden); // закрыть попап нажатием на крест
+buttonProfileEditClose.addEventListener('click', popupClose); // закрыть попап нажатием на крест
 
-function formSubmitProfile(evt) {
+function formSubmitHandler(evt) {
     evt.preventDefault();
     profileTitle.textContent = profileName.value;
     profileSubtitle.textContent = profileProfession.value;
-    popupHidden();
+    popupClose();
 };
 
-buttonProfileEditSave.addEventListener('click', formSubmitProfile); // сохроняем изменения профиля
-profileForm.addEventListener('submit', formSubmitProfile); //отправка формы
+// buttonProfileEditSave.addEventListener('click', formSubmitProfile); // сохроняем изменения профиля
+
+profileForm.addEventListener('submit', formSubmitHandler); //отправка формы
 
 // popup.addEventListener('click', function (a) {
 //     if (a.target === a.currentTarget) {
-//         popup.classList.add('popup_open');
+//         popupClose();
 //     }
 // }); // закрыть попап нажатием на страницу
 

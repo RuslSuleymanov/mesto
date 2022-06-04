@@ -1,5 +1,5 @@
 .profile__add-button {
-    background: url('../../../images/cross.svg') center center no-repeat;
+    background: url('../../../images/buttons/btnAdd.svg') center center no-repeat;
     width: 150px;
     height: 50px;
     cursor: pointer;
@@ -14,13 +14,14 @@
 
 @media screen and (max-width: 1023px) {
     .profile__add-button {
-        width: 100px;
+        max-width: 150px;
+        width: calc(100% - 500px);
     }
 }
 
 @media screen and (max-width: 767px) {
     .profile__add-button {
-        background: url('../../../images/mobile-cross.svg') center center no-repeat;
+        background: url('../../../images/buttons/btnAddMobile.svg') center center no-repeat;
         width: 282px;
     }
 }

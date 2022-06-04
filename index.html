@@ -12,12 +12,12 @@
 <body>
     <div class="page">
         <header class="header">
-            <img src="images/Vector.svg" alt="Лого" class="header__logo">
+            <img src="images/logo.svg" alt="Лого" class="header__logo">
         </header>
         <main class="main">
             <section class="profile">
                 <div class="profile__author">
-                    <img src="images/jak-iv.jpg" alt="Жак-Ив" class="profile__avatar">
+                    <img src="images/custo.jpg" alt="Жак-Ив" class="profile__avatar">
                     <div class="profile__info">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
                         <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
@@ -29,44 +29,44 @@
             <section class="elements">
                 <ul class="elements__list">
                     <li class="card">
-                        <img src="images/karachaevo.jpg" alt="пейзаж" class="card__img">
+                        <img src="images/cards/Karachaevsk.jpg" alt="пейзаж" class="card__img">
                         <div class="card__caption">
                             <h2 class="card__title">Карачаевск</h2>
                             <button class="card__like-button" type="button"></button>
                         </div>
                     </li>
                     <li class="card">
-                        <img src="images/mount.jpg" alt="пейзаж" class="card__img">
+                        <img src="images/cards/Mount Elbrus.jpg" alt="пейзаж" class="card__img">
                         <div class="card__caption">
                             <h2 class="card__title">Гора Эльбрус</h2>
                             <button class="card__like-button" type="button"></button>
                         </div>
                     </li>
                     <li class="card">
-                        <img src="images/dombay.jpg" alt="пейзаж" class="card__img">
+                        <img src="images/cards/Dombay.jpg" alt="пейзаж" class="card__img">
                         <div class="card__caption">
                             <h2 class="card__title">Домбай</h2>
                             <button class="card__like-button" type="button"></button>
                         </div>
                     </li>
                     <li class="card">
-                        <img src="images/mount.jpg" alt="пейзаж" class="card__img">
+                        <img src="images/cards/Dagestan.jpg" alt="пейзаж" class="card__img">
                         <div class="card__caption">
-                            <h2 class="card__title">Гора Эльбрус</h2>
+                            <h2 class="card__title">Дагестан</h2>
                             <button class="card__like-button" type="button"></button>
                         </div>
                     </li>
                     <li class="card">
-                        <img src="images/dombay.jpg" alt="пейзаж" class="card__img">
+                        <img src="images/cards/Naro-Fominsk.jpg" alt="пейзаж" class="card__img">
                         <div class="card__caption">
-                            <h2 class="card__title">Домбай</h2>
+                            <h2 class="card__title">Наро-Фоминск</h2>
                             <button class="card__like-button" type="button"></button>
                         </div>
                     </li>
                     <li class="card">
-                        <img src="images/karachaevo.jpg" alt="пейзаж" class="card__img">
+                        <img src="images/cards/Kazan.jpg" alt="пейзаж" class="card__img">
                         <div class="card__caption">
-                            <h2 class="card__title">Карачаево-Черкесcия</h2>
+                            <h2 class="card__title">Казань</h2>
                             <button class="card__like-button" type="button"></button>
                         </div>
                     </li>
@@ -80,12 +80,11 @@
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <button class="popup__button-close" aria-label="Закрыть" type="button"></button>
-                <form class="popup__form">
-                    <input type="text" value="Жак-Ив Кусто" class="popup__input popup__input_type_name" name="name"
-                        placeholder="Имя">
-                    <input type="text" value="Исследователь океана" class="popup__input popup__input_type_profession"
-                        name="profession" placeholder="Профессия">
-                    <button type="submit" class="popup__button-save" type="submit">Сохранить</button>
+                <form class="popup__form" name="popupForm">
+                    <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Имя">
+                    <input type="text" class="popup__input popup__input_type_profession" name="profession"
+                        placeholder="Профессия">
+                    <button type="submit" class="popup__button-save">Сохранить</button>
                 </form>
             </div>
         </div>
