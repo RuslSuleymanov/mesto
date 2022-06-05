@@ -2,7 +2,7 @@ let popup = document.querySelector('.popup');
 let buttonProfileEdit = document.querySelector('.profile__edit-button');
 let buttonProfileEditClose = document.querySelector('.popup__button-close');
 let buttonProfileEditSave = document.querySelector('.popup__button-save');
-let profileForm = document.forms.popupForm;
+let profileForm = document.querySelector('.popup__form');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileName = document.querySelector('.popup__input_type_name');
@@ -18,9 +18,9 @@ function popupClose() {
     popup.classList.remove('popup_opened');
 };
 
-buttonProfileEdit.addEventListener('click', popupOpen); // открыть попап
+buttonProfileEdit.addEventListener('click', popupOpen); // Открыть попап
 
-buttonProfileEditClose.addEventListener('click', popupClose); // закрыть попап нажатием на крест
+buttonProfileEditClose.addEventListener('click', popupClose); // Закрыть попап нажатием на крест
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -29,18 +29,16 @@ function formSubmitHandler(evt) {
     popupClose();
 };
 
-// buttonProfileEditSave.addEventListener('click', formSubmitProfile); // сохроняем изменения профиля
-
-profileForm.addEventListener('submit', formSubmitHandler); //отправка формы
+profileForm.addEventListener('submit', formSubmitHandler); // Сохраняем данные
 
 // popup.addEventListener('click', function (a) {
 //     if (a.target === a.currentTarget) {
 //         popupClose();
 //     }
-// }); // закрыть попап нажатием на страницу
+// }); // Закрыть попап нажатием на страницу
 
 // let buttonLike = document.querySelectorAll('.card__like-button');
 // buttonLike[i].addEventListener('click', function () {
 //    i = ???
 //    buttonLike[i].classList.add('card__like-button_active');
-// }); // кнопка лайка
+// }); // Кнопка лайка
