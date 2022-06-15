@@ -1,3 +1,4 @@
+//ПР4
 const popup = document.querySelector('.popup');
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
 const buttonProfileEditClose = document.querySelector('.popup__button-close');
@@ -18,10 +19,8 @@ function popupClose() {
     popup.classList.remove('popup_opened');
 };
 
-// Открыть попап
+// Открыте закрытие попап
 buttonProfileEdit.addEventListener('click', popupOpen);
-
-// Закрыть попап
 buttonProfileEditClose.addEventListener('click', popupClose);
 
 function formSubmitHandler(evt) {
@@ -31,47 +30,10 @@ function formSubmitHandler(evt) {
     popupClose();
 };
 
-// Сохраняем данные
+// Сохраняем данные из попап
 profileForm.addEventListener('submit', formSubmitHandler);
 
-const popupCards = document.querySelector('.popup__cards');
-const buttonNewCard = document.querySelector('.profile__add-button')
-const buttonNewCardClose = document.querySelector('.popup__button-close-cards')
-const placeLocation = document.querySelector('.popup__input_type_location')
-const placeUrl = document.querySelector('.popup__input_type_url')
-const placeForm = document.querySelector('.popup__form-place');
-
-function popupOpenCards() {
-    popupCards.classList.add('popup_opened');
-};
-
-buttonNewCard.addEventListener('click', popupOpenCards);
-
-function popupCloseCards() {
-    popupCards.classList.remove('popup_opened');
-};
-
-buttonNewCardClose.addEventListener('click', popupCloseCards);
-
-function formSubmitHandlerPlace(evt) {
-    evt.preventDefault();
-    const list = document.querySelector('.elements__list')
-    const newElement = template.cloneNode(true);
-    newElement.querySelector('.card__title').innerText = placeLocation.value
-    newElement.querySelector('.card__img').src = placeUrl.value
-    list.prepend(newElement);
-    popupCloseCards();
-};
-
-placeForm.addEventListener('submit', formSubmitHandlerPlace);
-
-
-const template = document.querySelector('.template').content;
-const elementsList = document.querySelector('.elements__list');
-const templateImg = document.querySelector('.card__img');
-const templateTitle = document.querySelector('.card__title');
-const templatePlaces = document.querySelector('.popup__places').content;
-
+// ПР5
 const initialCards = [
     {
         name: 'Архыз',
@@ -99,44 +61,80 @@ const initialCards = [
     }
 ];
 
-function newCards({ name, link }) {
-    const newElement = template.cloneNode(true);
-    newElement.querySelector('.card__title').textContent = name;
-    newElement.querySelector('.card__img').src = link;
-    elementsList.prepend(newElement);
+const popupCards = document.querySelector('.popup__cards');
+const buttonNewCardOpen = document.querySelector('.profile__add-button');
+const buttonNewCardClose = document.querySelector('.popup__button-close-cards');
+const template = document.querySelector('.template').content;
+const elementsList = document.querySelector('.elements__list');
+const popupPlaces = document.querySelector('.popup__places');
+const popupPlacesImg = document.querySelector('.popup__image');
+const popupPlacesSubtitle = document.querySelector('.popup__subtitle');
+const buttonPlaceClose = document.querySelector('.popup__button-close-places');
+const formInputPlacesLocation = document.querySelector('.popup__input_type_location');
+const formInputPlacesUrl = document.querySelector('.popup__input_type_url');
+const buttonSaveCard = document.querySelector('.popup__button-save-cards');
 
-    newElement.querySelector('.card__like-button').addEventListener('click', function (evt) {
+//открытие закрытие попап новой карточки
+function popupOpenCards() {
+    popupCards.classList.add('popup_opened');
+};
+function popupCloseCards() {
+    popupCards.classList.remove('popup_opened');
+};
+
+buttonNewCardOpen.addEventListener('click', popupOpenCards);
+buttonNewCardClose.addEventListener('click', popupCloseCards);
+
+//длбавление, удаление, лайк, увеличение карточки
+function newCards({ name, link }) {
+    const newItem = template.querySelector('.card').cloneNode(true);
+
+    newItem.querySelector('.card__title').textContent = name;
+    newItem.querySelector('.card__img').alt = name;
+    newItem.querySelector('.card__img').src = link;
+    elementsList.prepend(newItem);
+
+    newItem.querySelector('.card__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('card__like-button_type_active');
+    });
+
+    newItem.querySelector('.card__delete-button').addEventListener('click', function () {
+        newItem.remove();
+    });
+
+    newItem.querySelector('.card__img').addEventListener('click', function () {
+        popupPlacesImg.alt = name;
+        popupPlacesImg.src = link;
+        popupPlacesSubtitle.textContent = name;
+        placeOpen();
     });
 }
 
-initialCards.forEach(newCards);
-
-// const buttonLike = document.querySelector('.card__like-button');
-
-// buttonLike.addEventListener('click', function () {
-//     buttonLike.classList.toggle('card__like-button_type_active');
-// });
-
-const deleteButton = document.querySelector('.card__delete-button')
-
-function deleteCard() {
-    const listItem = deleteButton.closest('.card');
-    listItem.remove();
-};
-deleteButton.addEventListener('click', deleteCard);
-
-const popupPlaces = document.querySelector('.popup__places');
-const cardImg = document.querySelector('.card__img');
-const popupSubtitle = document.querySelector('popup__subtitle');
-const popupImg = document.querySelector('.popup__image')
-const cardTitle = document.querySelector('card__title');
-
+//открытие закрытие попап places
 function placeOpen() {
     popupPlaces.classList.add('popup_opened');
-    popupImg.src = cardImg.setAttribute('background-image');
-    popupSubtitle = cardTitle.textContent;
-
+}
+function placeClose() {
+    popupPlaces.classList.remove('popup_opened');
 }
 
-cardImg.addEventListener('click', placeOpen);
+buttonPlaceClose.addEventListener('click', placeClose);
+
+//передаем данные из попап в карточку
+function newCard(evt) {
+    evt.preventDefault();
+
+    const name = formInputPlacesLocation.value
+    const link = formInputPlacesUrl.value
+
+    newCards({ name, link });
+    popupCloseCards();
+
+    formInputPlacesLocation.value = '';
+    formInputPlacesUrl.value = '';
+}
+
+buttonSaveCard.addEventListener('click', newCard);
+
+//перебор массива карточек
+initialCards.forEach(newCards);
