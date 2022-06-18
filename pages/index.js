@@ -21,8 +21,8 @@ function popupClose(item) {
 };
 
 // Открыте закрытие попап
-buttonProfileEdit.addEventListener('click', () => { popupOpen(popup) });
-buttonProfileEditClose.addEventListener('click', () => { popupClose(popup) });
+buttonProfileEdit.addEventListener('click', () => popupOpen(popup));
+buttonProfileEditClose.addEventListener('click', () => popupClose(popup));
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -76,8 +76,8 @@ const formInputPlacesUrl = document.querySelector('.popup__input_type_url');
 const buttonSaveCard = document.querySelector('.popup__button-save-cards');
 
 //открытие закрытие попап новой карточки
-buttonNewCardOpen.addEventListener('click', () => { popupOpen(popupCards) });
-buttonNewCardClose.addEventListener('click', () => { popupClose(popupCards) });
+buttonNewCardOpen.addEventListener('click', () => popupOpen(popupCards));
+buttonNewCardClose.addEventListener('click', () => popupClose(popupCards));
 
 //длбавление, удаление, лайк, увеличение карточки
 function newCards({ name, link }) {
@@ -105,7 +105,7 @@ function newCards({ name, link }) {
 }
 
 //Закрытие попап картинки
-buttonPlaceClose.addEventListener('click', () => { popupClose(popupPlaces) });
+buttonPlaceClose.addEventListener('click', () => popupClose(popupPlaces));
 
 //Создаем новую карточку
 function newCard(evt) {
