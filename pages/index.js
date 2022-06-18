@@ -1,8 +1,8 @@
 //ПР4
-const popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup_position_author');
 const buttonProfileEdit = document.querySelector('.profile__edit-button');
-const buttonProfileEditClose = document.querySelector('.popup__button-close');
-const buttonProfileEditSave = document.querySelector('.popup__button-save');
+const buttonProfileEditClose = document.querySelector('.popup__button-close_position_author');
+const buttonProfileEditSave = document.querySelector('.popup__button-save_position_author');
 const profileForm = document.querySelector('.popup__form');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -62,18 +62,18 @@ const initialCards = [
     }
 ];
 
-const popupCards = document.querySelector('.popup__cards');
-const buttonNewCardOpen = document.querySelector('.profile__add-button');
-const buttonNewCardClose = document.querySelector('.popup__button-close-cards');
 const template = document.querySelector('.template').content;
+const popupCards = document.querySelector('.popup_position_cards');
+const buttonNewCardOpen = document.querySelector('.profile__add-button');
+const buttonNewCardClose = document.querySelector('.popup__button-close_position_cards');
 const elementsList = document.querySelector('.elements__list');
-const popupPlaces = document.querySelector('.popup__places');
+const popupPlaces = document.querySelector('.popup_position_places');
 const popupPlacesImg = document.querySelector('.popup__image');
 const popupPlacesSubtitle = document.querySelector('.popup__subtitle');
-const buttonPlaceClose = document.querySelector('.popup__button-close-places');
+const buttonPlaceClose = document.querySelector('.popup__button-close_position_places');
 const formInputPlacesLocation = document.querySelector('.popup__input_type_location');
 const formInputPlacesUrl = document.querySelector('.popup__input_type_url');
-const buttonSaveCard = document.querySelector('.popup__button-save-cards');
+const buttonSaveCard = document.querySelector('.popup__button-save_position_cards');
 
 //открытие закрытие попап новой карточки
 buttonNewCardOpen.addEventListener('click', () => popupOpen(popupCards));
