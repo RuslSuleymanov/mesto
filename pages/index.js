@@ -76,13 +76,13 @@ const profileFormCard = document.querySelector('.popup__form_position_cards');
 //Открытие попап новой карточки
 buttonNewCardOpen.addEventListener('click', () => openPopup(popupCards));
 
-//Возвращаем карточку с лайком, удалением, попапом
-function newCards({ name, link }) {
+//Возвращаем элемент с лайком, удалением, попапом
+function createCard(item) {
     const newItem = template.querySelector('.card').cloneNode(true);
 
-    newItem.querySelector('.card__title').textContent = name;
-    newItem.querySelector('.card__img').alt = name;
-    newItem.querySelector('.card__img').src = link;
+    newItem.querySelector('.card__title').textContent = item.name;
+    newItem.querySelector('.card__img').alt = item.name;
+    newItem.querySelector('.card__img').src = item.link;
 
     newItem.querySelector('.card__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('card__like-button_type_active');
@@ -93,39 +93,45 @@ function newCards({ name, link }) {
     });
 
     newItem.querySelector('.card__img').addEventListener('click', function () {
-        popupPlacesImg.alt = name;
-        popupPlacesImg.src = link;
-        popupPlacesSubtitle.textContent = name;
+        popupPlacesImg.alt = item.name;
+        popupPlacesImg.src = item.link;
+        popupPlacesSubtitle.textContent = item.name;
         openPopup(popupPlaces);
     });
 
     return newItem;
-}
+};
 
-//Создаем новую карточку
+//Вставляем елемент в DOM
+function addCard(item) {
+    elementsList.prepend(item);
+};
+
+//Создаем карточки из массива элементов
+initialCards.forEach((item) => {
+    addCard(createCard(item));
+});
+
+//Создаем новый элемент
 function newCard(evt) {
     evt.preventDefault();
 
-    const name = formInputPlacesLocation.value
-    const link = formInputPlacesUrl.value
-    const card = newCards({ name, link });
+    const name = formInputPlacesLocation.value;
+    const link = formInputPlacesUrl.value;
 
-    elementsList.prepend(card);
+    addCard(createCard({ name, link }));
 
     closePopup(popupCards);
     profileFormCard.reset();
-}
+};
 
 profileFormCard.addEventListener('submit', newCard);
-
-//Перебор массива карточек
-initialCards.forEach(newCards);
 
 //Закрытие попапов
 popups.forEach((item) => {
     item.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup__button-close')) {
             closePopup(item)
-        }
-    })
-}) 
+        };
+    });
+});
