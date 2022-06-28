@@ -1,5 +1,5 @@
 .popup__button-save {
-    margin: 48px 0 37px;
+    margin: 31px 0 37px;
     color: #fff;
     background-color: #000;
     width: 358px;
@@ -16,7 +16,7 @@
 
 @media screen and (max-width: 767px) {
     .popup__button-save {
-        margin: 45px 0 25px;
+        margin: 31px 0 25px;
         width: 238px;
         font-size: 14px;
         line-height: 17px;

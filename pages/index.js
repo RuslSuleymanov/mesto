@@ -127,7 +127,7 @@ function newCard(evt) {
 
 profileFormCard.addEventListener('submit', newCard);
 
-//Закрытие попапов
+//Закрытие всех попапов на крест
 popups.forEach((item) => {
     item.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup__button-close')) {
