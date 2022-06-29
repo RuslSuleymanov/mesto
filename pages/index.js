@@ -9,32 +9,44 @@ const profileName = document.querySelector('.popup__input_type_name');
 const profileProfession = document.querySelector('.popup__input_type_profession');
 const popups = document.querySelectorAll('.popup')
 
-function openPopup(item) {
+// Ф открытия попап
+const openPopup = (item) => {
     item.classList.add('popup_opened');
+
+    // Вешаем слушатели закрытия
+    document.addEventListener('keydown', closePopupEsc);
+    item.addEventListener('click', closePopupOverlay);
 };
 
-function closePopup(item) {
+// Ф закрытия попап
+const closePopup = (item) => {
     item.classList.remove('popup_opened');
+
+    // Удаляем слушатели закрытия
+    document.removeEventListener('keydown', closePopupEsc);
+    item.removeEventListener('click', closePopupOverlay);
 };
 
-// Открыте попап
+// Вешаем слушатель открытие попап
 buttonProfileEdit.addEventListener('click', function () {
     profileName.value = profileTitle.textContent;
     profileProfession.value = profileSubtitle.textContent;
     openPopup(popupAuthor);
 });
 
-function handleAuthorFormSubmit(evt) {
+// Ф Записи данных профиля
+const handleAuthorFormSubmit = (evt) => {
     evt.preventDefault();
     profileTitle.textContent = profileName.value;
     profileSubtitle.textContent = profileProfession.value;
     closePopup(popupAuthor);
 };
 
-// Сохраняем данные из попап
+// Вешаем слушатель сохранения данных из попап
 profileFormAuthor.addEventListener('submit', handleAuthorFormSubmit);
 
 // ПР5
+// Массив начальных карточек
 const initialCards = [
     {
         name: 'Архыз',
@@ -73,25 +85,28 @@ const formInputPlacesLocation = document.querySelector('.popup__input_type_locat
 const formInputPlacesUrl = document.querySelector('.popup__input_type_url');
 const profileFormCard = document.querySelector('.popup__form_position_cards');
 
-//Открытие попап новой карточки
+// Вешаем слушатель открытия попап новой карточки
 buttonNewCardOpen.addEventListener('click', () => openPopup(popupCards));
 
-//Возвращаем элемент с лайком, удалением, попапом
-function createCard(item) {
+// Ф возвращения элемента с лайком, корзиной, попапом
+const createCard = (item) => {
     const newItem = template.querySelector('.card').cloneNode(true);
 
     newItem.querySelector('.card__title').textContent = item.name;
     newItem.querySelector('.card__img').alt = item.name;
     newItem.querySelector('.card__img').src = item.link;
 
+    // Вешаем слушатель лайка
     newItem.querySelector('.card__like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('card__like-button_type_active');
     });
 
+    // Вешаем слушатель корзины
     newItem.querySelector('.card__delete-button').addEventListener('click', function () {
         newItem.remove();
     });
 
+    // Вешаем слушатель попап увеличения картинки
     newItem.querySelector('.card__img').addEventListener('click', function () {
         popupPlacesImg.alt = item.name;
         popupPlacesImg.src = item.link;
@@ -102,18 +117,18 @@ function createCard(item) {
     return newItem;
 };
 
-//Вставляем елемент в DOM
-function addCard(item) {
+// Ф добавления елемента в DOM
+const addCard = (item) => {
     elementsList.prepend(item);
 };
 
-//Создаем карточки из массива элементов
+// Перебор массива начальных карточек
 initialCards.forEach((item) => {
     addCard(createCard(item));
 });
 
-//Создаем новый элемент
-function newCard(evt) {
+// Ф создания новой карточки
+const newCard = (evt) => {
     evt.preventDefault();
 
     const name = formInputPlacesLocation.value;
@@ -125,13 +140,31 @@ function newCard(evt) {
     profileFormCard.reset();
 };
 
+// Вешаем слушатель добавления карточки
 profileFormCard.addEventListener('submit', newCard);
 
-//Закрытие всех попапов на крест
+// Перебор массива всех попапов. Вешаем слушатель закрытия на крест
 popups.forEach((item) => {
     item.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup__button-close')) {
-            closePopup(item)
+            closePopup(item);
         };
     });
 });
+
+//ПР6
+// Ф закрытия попап по Esc
+const closePopupEsc = (evt) => {
+    if (evt.key === 'Escape') {
+        const popup = document.querySelector('.popup_opened');
+        closePopup(popup);
+    };
+};
+
+// Ф закрытия попап по оверлею 
+const closePopupOverlay = (evt) => {
+    if (evt.target === evt.currentTarget) {
+        const popup = document.querySelector('.popup_opened');
+        closePopup(popup);
+    };
+};
