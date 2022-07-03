@@ -1,15 +1,7 @@
-// Объект настроек
-const settings = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button-save',
-    inactiveButtonClass: 'popup__button-save_inactive',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active'
-};
+
 
 // Ф добавления ошибки
-const showError = (formElement, inputElement, errorMessage) => {
+const showError = (formElement, inputElement, errorMessage, settings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(settings.inputErrorClass);
     errorElement.classList.add(settings.errorClass);
@@ -17,7 +9,7 @@ const showError = (formElement, inputElement, errorMessage) => {
 };
 
 // Ф удаления ошибки
-const hideError = (formElement, inputElement) => {
+const hideError = (formElement, inputElement, settings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(settings.inputErrorClass);
     errorElement.classList.remove(settings.errorClass);
@@ -25,26 +17,31 @@ const hideError = (formElement, inputElement) => {
 };
 
 // Ф добавления или удаления ошибки
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, settings) => {
     if (!inputElement.validity.valid) {
-        showError(formElement, inputElement, inputElement.validationMessage);
+        showError(formElement, inputElement, inputElement.validationMessage, settings);
     } else {
-        hideError(formElement, inputElement);
+        hideError(formElement, inputElement, settings);
     };
 };
 
-// Ф возврат false если один из инпутов с ошибкой
+// Ф возврата false если один из инпутов с ошибкой
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
         return !inputElement.validity.valid;
     });
 };
 
+// Ф добавления атрибута disable
+const disableSubmit = (buttonElement, settings) => {
+    buttonElement.setAttribute('disabled', true);
+    buttonElement.classList.add(settings.inactiveButtonClass);
+};
+
 // Ф отключения кнопки если один из инпутов с ошибкой
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, settings) => {
     if (hasInvalidInput(inputList)) {
-        buttonElement.setAttribute('disabled', true);
-        buttonElement.classList.add(settings.inactiveButtonClass);
+        disableSubmit(buttonElement, settings);
     } else {
         buttonElement.removeAttribute('disabled');
         buttonElement.classList.remove(settings.inactiveButtonClass);
@@ -52,17 +49,17 @@ const toggleButtonState = (inputList, buttonElement) => {
 };
 
 // Ф вешаем слушатель отключения кнопки на инпуты
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, settings) => {
     const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
     const buttonElement = formElement.querySelector(settings.submitButtonSelector);
 
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, settings);
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
-            checkInputValidity(formElement, inputElement);
+            checkInputValidity(formElement, inputElement, settings);
 
-            toggleButtonState(inputList, buttonElement);
+            toggleButtonState(inputList, buttonElement, settings);
         });
     });
 };
@@ -72,8 +69,7 @@ const enableValidation = (settings) => {
     const formList = Array.from(document.querySelectorAll(settings.formSelector));
 
     formList.forEach((formElement) => {
-        setEventListeners(formElement);
+        setEventListeners(formElement, settings);
     });
 };
 
-enableValidation(settings);
