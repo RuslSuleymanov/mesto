@@ -1,8 +1,9 @@
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handlePopupClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
+        this._handlePopupClick = handlePopupClick;
     }
 
     _getTemplate() {
@@ -39,7 +40,7 @@ export class Card {
             .addEventListener('click', () => (this._handleBasketClick()));
 
         this._element.querySelector('.card__img')
-            .addEventListener('click', () => (this._handlePopupClick()));
+            .addEventListener('click', () => (this._handlePopupClick(this._name, this._link)));
     }
 
     _handleLikeClick() {
@@ -50,14 +51,4 @@ export class Card {
         this._element.remove();
     }
 
-    _handlePopupClick() {
-        const popupPlaces = document.querySelector('.popup_position_places');
-        const popupPlacesImg = document.querySelector('.popup__image');
-
-        popupPlacesImg.alt = this._name;
-        popupPlacesImg.src = this._link;
-        document.querySelector('.popup__subtitle').textContent = this._name;
-
-        openPopup(popupPlaces);
-    }
 }

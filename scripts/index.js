@@ -51,7 +51,7 @@ const resetError = () => {
     document.querySelectorAll('.popup__input-error').forEach((item) => {
         item.textContent = '';
     });
-    console.log('OPEN')
+
     document.querySelectorAll('.popup__input').forEach((item) => {
         item.classList.remove(validSettings.inputErrorClass);
     });
@@ -142,15 +142,25 @@ const newCard = (evt) => {
 // Вешаем слушатель добавления карточки
 profileFormCard.addEventListener('submit', newCard);
 
+const handlePopupClick = (name, link) => {
+    const popupPlaces = document.querySelector('.popup_position_places');
+    const popupPlacesImg = document.querySelector('.popup__image');
+
+    popupPlacesImg.alt = name;
+    popupPlacesImg.src = link;
+    document.querySelector('.popup__subtitle').textContent = name;
+
+    openPopup(popupPlaces);
+}
+
 // Перебор массива начальных карточек
 initialCards.forEach((item) => {
-    const card = new Card(item, '.template');
+    const card = new Card(item, '.template', handlePopupClick);
 
     const cardElement = card.generateCard();
 
     document.querySelector('.elements__list').prepend(cardElement);
 });
-
 
 const validAuthor = new FormValidator(validSettings, formAuthor);
 validAuthor.enableValidation();
